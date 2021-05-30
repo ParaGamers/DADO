@@ -1,0 +1,8 @@
+main: main.MiPlugin
+version: 1.0.1
+name: Dado-by-PG
+
+commands:
+   dado:
+     description: Comando del plugin dado
+      
