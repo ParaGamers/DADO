@@ -4,5 +4,5 @@ name: Dado-by-PG
 
 commands:
    dado:
-     description: Comando del plugin dado
+     description: Tira el dado
       
