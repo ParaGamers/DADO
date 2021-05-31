@@ -37,11 +37,9 @@ public class Comandos implements CommandExecutor {
 			if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("reload")) {
 					plugin.reloadConfig();
-					jugador.sendMessage("Se recargarlo el plugin");
-
+					jugador.sendMessage("Se recargo el plugin");
 				} else {
 					jugador.sendMessage("Especifica numero de dados y sus caras");
-
 				}
 			}
 			// para mas de 1 atributo
@@ -51,23 +49,24 @@ public class Comandos implements CommandExecutor {
 						String path = "Historial.lista";
 						FileConfiguration hist = plugin.getHistorial();
 						java.util.List<String> listHistoria = hist.getStringList(path);
-						jugador.sendMessage("-- history ------------------");
+						
+						jugador.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l-- History ------------------"));
 						for (int i = listHistoria.size(); i > listHistoria.size() - Integer.parseInt(args[1]); i--) {
-							jugador.sendMessage(Integer.toString(i));
-							String texto =listHistoria.get(i);
-							jugador.sendMessage(texto);
 							
-						}jugador.sendMessage("-- Fin-history -------------");					
+							String texto =listHistoria.get(i-1);
+							jugador.sendMessage(texto.toString());							
+						}
+						jugador.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&l-- Fin-history ------------------"));					
 
 					} else {
 						jugador.sendMessage("Especifique el tamaño del historial que desea ver");
 						jugador.sendMessage("Entre 1 a 10,");
 					}
 
-				} else if (Integer.parseInt(args[0]) < 10) { // no mas de 9 dados
+				} else if (Integer.parseInt(args[0]) < 9) { // no mas de 8 dados
 					String strHistNum = "";
-					String strListNumeros = "&4" + jugador.getName() + " &ba sacado: ";
-					for (int i = 0; i < Integer.parseInt(args[0]); i++) { // crea los aleatorios dependiendo el
+					String strListNumeros = "&4" + jugador.getName() + " &bha sacado: ";
+					for (int i = 1; i < Integer.parseInt(args[0])+1; i++) { // crea los aleatorios dependiendo el
 																			// argumento
 						int aleatorio1 = (int) Math.abs(Math.random() * Integer.parseInt(args[1])) + 1;
 						String strAleatorio1 = Integer.toString(aleatorio1); // los concatena en el formato de & para el
@@ -93,7 +92,7 @@ public class Comandos implements CommandExecutor {
 				int aleatorio = (int) Math.abs(Math.random() * 6) + 1;
 				String strAleatorio = Integer.toString(aleatorio);
 				Bukkit.broadcastMessage(
-						ChatColor.translateAlternateColorCodes('&', "&bhas sacado &4" + aleatorio + " &r&bEn el dado"));
+						ChatColor.translateAlternateColorCodes('&',"&4"+jugador.getName()+ "&b ha sacado &4" + aleatorio ));
 				guardHistorial(jugador, strAleatorio);
 
 			}
